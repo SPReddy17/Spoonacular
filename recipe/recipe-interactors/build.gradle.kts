@@ -2,5 +2,8 @@ apply{
     from("$rootDir/library-build.gradle")
 }
 dependencies{
-
+"implementation"(project(Modules.core))
+"implementation"(project(Modules.recipeDataSource))
+"implementation"(project(Modules.recipeListDomain))
+"implementation"(Kotlinx.coroutinesCore)
 }

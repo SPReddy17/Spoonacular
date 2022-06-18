@@ -9,10 +9,11 @@ object Modules {
     const val constants = ":constants"
 
     const val fish = ":fish"
-    const val fishDataSource = ":fish:fish-datasource"
-    const val fishDataSourceTest = ":fish:fish-datasource-test"
-    const val fishDomain = ":fish:fish-domain"
-    const val fishInteractors = ":fish:fish-interactors"
-    const val ui_fishDetail = ":fish:ui-fishDetail"
-    const val ui_fishList = ":fish:ui-fishList"
+    const val recipeDataSource = ":recipe:recipe-datasource"
+    const val recipeDataSourceTest = ":recipe:recipe-datasource-test"
+    const val recipeListDomain = ":recipe:recipe-list-domain"
+    const val recipeDetailDomain = ":recipe:recipe-detail-domain"
+    const val recipeInteractors = ":recipe:recipe-interactors"
+    const val ui_recipeDetail = ":recipe:ui-recipe-detail"
+    const val ui_recipeList = ":recipe:ui-recipe-list"
 }
