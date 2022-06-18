@@ -1,5 +1,5 @@
 object Android {
-    const val appId = "com.example.whatthefish"
+    const val appId = "com.example.spoonacular"
     const val compileSdk = 30
     const val buildTools = "30.0.3"
     const val minSdk = 21

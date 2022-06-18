@@ -14,3 +14,14 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Spoonacular"
 include ':app'
+include ':core'
+include ':constants'
+include ':recipe'
+include ':recipe:recipe-datasource'
+include ':recipe:recipe-list-domain'
+include ':recipe:recipe-detail-domain'
+include ':recipe:recipe-interactors'
+include ':recipe:recipe-datasource-test'
+include ':recipe:ui-recipe-list'
+include ':recipe:ui-recipe-detail'
+include ':components'
