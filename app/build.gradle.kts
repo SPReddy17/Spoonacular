@@ -45,12 +45,9 @@ android {
 }
 
 dependencies{
-//    implementation(project(Modules.core))
-//    implementation(project(Modules.fishDomain))
-//    implementation(project(Modules.fishDataSource))
-//    implementation(project(Modules.fishInteractors))
-//    implementation(project(Modules.ui_fishList))
-//    implementation(project(Modules.ui_fishDetail))
+    implementation(project(Modules.core))
+    implementation(project(Modules.recipeListDomain))
+    implementation(project(Modules.recipeInteractors))
 
     implementation(Accompanist.animations)
 

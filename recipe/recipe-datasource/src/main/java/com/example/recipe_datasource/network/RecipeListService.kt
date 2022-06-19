@@ -7,7 +7,7 @@ import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 
 interface RecipeListService {
-    suspend fun getRecipeList(query: String): List<RecipeList>
+    suspend fun getRecipeList(query: String): RecipeList
 
     companion object Factory {
         fun build(): RecipeListService {
@@ -16,9 +16,8 @@ interface RecipeListService {
                     install(JsonFeature) {
                         serializer = KotlinxSerializer(
                             kotlinx.serialization.json.Json {
-                                ignoreUnknownKeys =
-                                    true// if server returns extra fields, ignores them...
-                            }
+                                ignoreUnknownKeys = true// if server returns extra fields, ignores them...
+                            },
                         )
                     }
                 }

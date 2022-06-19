@@ -6,21 +6,21 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RecipeListDto(
-    @SerialName("id")
-    val number: Int,
-    @SerialName("offset")
-    val offset: Int,
     @SerialName("results")
-    val results: List<ResultDto>,
+    val results: List<ResultDto> ? = null,
+    @SerialName("offset")
+    val offset: Int?=null,
+    @SerialName("number")
+    val number: Int?=null,
     @SerialName("totalResults")
-    val totalResults: Int,
+    val totalResults: Int?=null,
 )
 
 fun RecipeListDto.toRecipeList(): RecipeList {
     return RecipeList(
         number = number,
         offset = offset,
-        results = results.map { convertResultDtoToResult(it) },
+        results = results?.map { convertResultDtoToResult(it) },
         totalResults = totalResults
     )
 }

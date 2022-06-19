@@ -7,21 +7,21 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ResultDto(
     @SerialName("calories")
-    val calories: Int,
+    val calories: Int? = null,
     @SerialName("carbs")
-    val carbs: String,
+    val carbs: String? = null,
     @SerialName("fat")
-    val fat: String,
+    val fat: String? = null,
     @SerialName("id")
-    val id: Int,
+    val id: Int? = null,
     @SerialName("image")
-    val image: String,
+    val image: String? = null,
     @SerialName("imageType")
-    val imageType: String,
+    val imageType: String? = null,
     @SerialName("protein")
-    val protein: String,
+    val protein: String? = null,
     @SerialName("title")
-    val title: String,
+    val title: String? = null,
 )
 
 fun convertResultDtoToResult(resultDto: ResultDto): Result {

@@ -10,11 +10,11 @@ class RecipeListServiceImpl(
     private val httpClient: HttpClient
 ) : RecipeListService {
     private val myApiKey = "2e11fd22ebe5489a99e0c4b5565d079c"
-    override suspend fun getRecipeList(query: String): List<RecipeList> {
-        return httpClient.get<List<RecipeListDto>> {
+    override suspend fun getRecipeList(query: String): RecipeList {
+        return httpClient.get<RecipeListDto> {
             url(EndPoints.RECIPE_SEARCH)
             parameter("apiKey", myApiKey)
             parameter("query", query)
-        }.map { it.toRecipeList() }
+        }.toRecipeList()
     }
 }
