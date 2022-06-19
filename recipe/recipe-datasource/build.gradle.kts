@@ -7,6 +7,7 @@ plugins{
 }
 dependencies{
     "implementation"(project(Modules.recipeListDomain))
+    "implementation"(project(Modules.recipeDetailDomain))
     "implementation"(Ktor.core)
     "implementation"(Ktor.clientSerialization)
     "implementation"(Ktor.android)

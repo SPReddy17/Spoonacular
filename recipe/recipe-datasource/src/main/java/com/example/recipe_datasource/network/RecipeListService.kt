@@ -1,5 +1,6 @@
 package com.example.recipe_datasource.network
 
+import com.example.recipe_detail_domain.RecipeDetail
 import com.example.recipe_list_domain.RecipeList
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
@@ -8,6 +9,7 @@ import io.ktor.client.features.json.serializer.*
 
 interface RecipeListService {
     suspend fun getRecipeList(query: String): RecipeList
+    suspend fun getRecipeDetail(query: String): RecipeDetail
 
     companion object Factory {
         fun build(): RecipeListService {

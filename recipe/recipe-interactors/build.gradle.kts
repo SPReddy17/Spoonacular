@@ -5,5 +5,6 @@ dependencies{
 "implementation"(project(Modules.core))
 "implementation"(project(Modules.recipeDataSource))
 "implementation"(project(Modules.recipeListDomain))
+"implementation"(project(Modules.recipeDetailDomain))
 "implementation"(Kotlinx.coroutinesCore)
 }
