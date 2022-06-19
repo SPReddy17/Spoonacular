@@ -9,7 +9,7 @@ import io.ktor.client.features.json.serializer.*
 
 interface RecipeListService {
     suspend fun getRecipeList(query: String): RecipeList
-    suspend fun getRecipeDetail(query: String): RecipeDetail
+    suspend fun getRecipeDetail(id: Int): RecipeDetail
 
     companion object Factory {
         fun build(): RecipeListService {
@@ -19,6 +19,7 @@ interface RecipeListService {
                         serializer = KotlinxSerializer(
                             kotlinx.serialization.json.Json {
                                 ignoreUnknownKeys = true// if server returns extra fields, ignores them...
+                                isLenient = true
                             },
                         )
                     }

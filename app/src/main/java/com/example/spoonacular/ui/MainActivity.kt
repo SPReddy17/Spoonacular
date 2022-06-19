@@ -15,7 +15,8 @@ import androidx.navigation.compose.rememberNavController
 import coil.ImageLoader
 import com.example.spoonacular.ui.navigation.Screen
 import com.example.spoonacular.ui.theme.SpoonacularTheme
-import com.example.ui_recipe_detail.RecipeDetail
+import com.example.ui_recipe_detail.ui.RecipeDetailScreen
+import com.example.ui_recipe_detail.ui.RecipeDetailViewModel
 import com.example.ui_recipe_list.ui.RecipeListScreen
 import com.example.ui_recipe_list.ui.RecipeListViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,7 +39,9 @@ class MainActivity : ComponentActivity() {
                     startDestination = Screen.RecipeList.route,
                     builder = {
                         addRecipeList(navController = navController, imageLoader = imageLoader)
-                        addRecipeDetail()
+                        addRecipeDetail(
+                            imageLoader = imageLoader
+                        )
                     }
                 )
             }
@@ -66,13 +69,19 @@ fun NavGraphBuilder.addRecipeList(
     }
 }
 
-fun NavGraphBuilder.addRecipeDetail() {
+fun NavGraphBuilder.addRecipeDetail(
+    imageLoader: ImageLoader
+) {
     composable(
         route = Screen.RecipeDetail.route + "/{recipeId}",
         arguments = Screen.RecipeDetail.arguments,
     ) { navBackStackEntry ->
-        RecipeDetail(
-            recipeId = navBackStackEntry.arguments?.get("recipeId") as Int?
+        val viewModel: RecipeDetailViewModel = hiltViewModel()
+        RecipeDetailScreen(
+            //  recipeId = navBackStackEntry.arguments?.get("recipeId") as Int?,
+            state = viewModel.state.value,
+            events = viewModel::onTriggerEvent,
+            imageLoader = imageLoader
         )
     }
 }

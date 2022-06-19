@@ -6,7 +6,7 @@ data class RecipeDetail(
     val cheap: Boolean,
     val cookingMinutes: Int?,
     val creditsText: String?,
-    val cuisines: List<Any>?,
+    val cuisines: List<String>?,
     val dairyFree: Boolean?,
     val diets: List<String>?,
     val dishTypes: List<String>?,
@@ -20,9 +20,9 @@ data class RecipeDetail(
     val instructions: String?,
     val license: String?,
     val lowFodmap: Boolean?,
-    val occasions: List<Any>?,
+    val occasions: List<String>?,
     val openLicense: Int?,
-    val originalId: Any?,
+    val originalId: Int?,
     val preparationMinutes: Int?,
     val pricePerServing: Double?,
     val readyInMinutes: Int?,
@@ -38,5 +38,5 @@ data class RecipeDetail(
     val veryHealthy: Boolean?,
     val veryPopular: Boolean?,
     val weightWatcherSmartPoints: Int?,
-    val winePairing: WinePairing?
+    val winePairing: WinePairing? = null
 )
