@@ -48,6 +48,7 @@ dependencies {
     implementation(project(Modules.recipeListDomain))
     implementation(project(Modules.recipeInteractors))
     implementation(project(Modules.ui_recipeList))
+    implementation(project(Modules.ui_recipeDetail))
     implementation(Coil.coil)
 
     implementation(Accompanist.animations)

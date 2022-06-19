@@ -16,6 +16,7 @@ import com.example.ui_recipe_list.components.RecipeListItem
 fun RecipeListScreen(
     state: RecipeListState,
     imageLoader: ImageLoader,
+    navigateToDetailScreen :(Int) -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn {
@@ -24,8 +25,8 @@ fun RecipeListScreen(
                 //Text(text = recipes.title.toString())
                 RecipeListItem(
                     recipe = recipes,
-                    onSelectRecipe = {
-
+                    onSelectRecipe = {recipeId ->
+                        navigateToDetailScreen(recipeId)
                     },
                     imageLoader = imageLoader,
                 )
