@@ -1,4 +1,3 @@
-
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -44,10 +43,12 @@ android {
     }
 }
 
-dependencies{
+dependencies {
     implementation(project(Modules.core))
     implementation(project(Modules.recipeListDomain))
     implementation(project(Modules.recipeInteractors))
+    implementation(project(Modules.ui_recipeList))
+    implementation(Coil.coil)
 
     implementation(Accompanist.animations)
 

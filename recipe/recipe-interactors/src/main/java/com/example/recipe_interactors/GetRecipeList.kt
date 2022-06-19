@@ -18,7 +18,7 @@ class GetRecipeList(
             delay(1000)
             val recipeList: RecipeList = try {
                 service.getRecipeList(query)
-            }catch (e : Exception){
+            } catch (e: Exception) {
                 emit(
                     DataState.Response<RecipeList>(
                         uiComponent = UIComponent.Dialog(
@@ -27,12 +27,14 @@ class GetRecipeList(
                         )
                     )
                 )
-                RecipeList(null,
-                null,
-                null,
-                null)
+                RecipeList(
+                    null,
+                    null,
+                    null,
+                    null
+                )
             }
-            println("recipeList -> $recipeList")
+            // do caching in the future...
             emit(DataState.Data(recipeList))
         } catch (e: Exception) {
             emit(
@@ -43,8 +45,7 @@ class GetRecipeList(
                     )
                 )
             )
-        }
-        finally {
+        } finally {
             emit(DataState.Loading(progressBarState = ProgressBarState.Idle))
         }
     }

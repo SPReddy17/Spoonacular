@@ -15,6 +15,7 @@ class RecipeListServiceImpl(
             url(EndPoints.RECIPE_SEARCH)
             parameter("apiKey", myApiKey)
             parameter("query", query)
+            parameter("number", 25) // returns 25 recipes
         }.toRecipeList()
     }
 }

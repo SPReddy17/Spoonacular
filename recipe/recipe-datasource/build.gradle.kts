@@ -3,10 +3,13 @@ apply{
 }
 plugins{
     kotlin(KotlinPlugins.serialization) version Kotlin.version
+    id(SqlDelight.plugin)
 }
 dependencies{
     "implementation"(project(Modules.recipeListDomain))
     "implementation"(Ktor.core)
     "implementation"(Ktor.clientSerialization)
     "implementation"(Ktor.android)
+
+    "implementation"(SqlDelight.runtime)
 }
