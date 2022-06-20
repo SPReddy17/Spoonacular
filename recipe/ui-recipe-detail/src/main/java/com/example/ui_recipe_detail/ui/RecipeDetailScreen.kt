@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -17,6 +18,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import coil.compose.rememberImagePainter
+import com.example.core.ProgressBarState
 import com.example.recipe_detail_domain.RecipeDetail
 import com.example.ui_recipe_detail.R
 
@@ -107,6 +109,15 @@ fun RecipeDetailScreen(
             }
         }
     }
+    if (state.progressBarState is ProgressBarState.Loading) {
+        CircularProgressIndicator(
+            //modifier = Modifier.align(Alignment.Center)
+        )
+        CircularProgressIndicator(
+            modifier = Modifier
+        )
+    }
+
 }
 
 

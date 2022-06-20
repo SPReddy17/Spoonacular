@@ -8,17 +8,17 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class WinePairingDto(
     @SerialName("pairedWines")
-    val pairedWines: List<String>,
+    val pairedWines: List<String>?,
     @SerialName("pairingText")
-    val pairingText: String,
+    val pairingText: String?,
     @SerialName("productMatches")
-    val productMatches: List<ProductMatchesDto>
+    val productMatches: List<ProductMatchesDto>?
 )
 
 fun WinePairingDto.toWinePairing(): WinePairing{
     return WinePairing(
         pairedWines = pairedWines,
         pairingText = pairingText,
-        productMatches = productMatches.map { convertProductMatchesDtoToProductMatches(it) }
+        productMatches = productMatches?.map { convertProductMatchesDtoToProductMatches(it) }
     )
 }

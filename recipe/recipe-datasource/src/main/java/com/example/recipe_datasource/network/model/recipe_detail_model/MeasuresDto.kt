@@ -9,14 +9,19 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MeasuresDto(
     @SerialName("metric")
-    val metric: MetricDto,
+    val metric: MetricDto?,
     @SerialName("us")
-    val us: UsDto
+    val us: UsDto?
 )
 
-fun MeasuresDto.toMeasures(): Measures{
+fun MeasuresDto.toMeasures(): Measures {
     return Measures(
-        metric = metric.toMetric(),
-        us = us.toUs()
+        // metric = metric?.toMetric(),
+        metric = metric.let {
+            it?.toMetric()
+        },
+        us = us.let {
+            it?.toUs()
+        }
     )
 }

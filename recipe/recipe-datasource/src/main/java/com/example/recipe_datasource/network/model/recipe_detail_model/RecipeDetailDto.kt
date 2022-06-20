@@ -14,7 +14,7 @@ data class RecipeDetailDto(
     @SerialName("analyzedInstructions")
     val analyzedInstructions: List<AnalyzedInstructionDto>?,
     @SerialName("cheap")
-    val cheap: Boolean,
+    val cheap: Boolean?,
     @SerialName("cookingMinutes")
     val cookingMinutes: Int?,
     @SerialName("creditsText")

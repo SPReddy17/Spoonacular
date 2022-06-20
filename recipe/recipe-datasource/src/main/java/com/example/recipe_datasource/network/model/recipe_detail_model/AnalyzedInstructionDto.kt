@@ -8,14 +8,14 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class AnalyzedInstructionDto(
     @SerialName("name")
-    val name: String,
+    val name: String?,
     @SerialName("steps")
-    val steps: List<StepDto>
+    val steps: List<StepDto>?
 )
 
 fun convertAnalyzedInstructionDtoToAnalyzedInstruction(analyzedInstructionDto:AnalyzedInstructionDto): AnalyzedInstruction{
     return AnalyzedInstruction(
         name = analyzedInstructionDto.name,
-        steps = analyzedInstructionDto.steps.map { convertStepDtoToStep(it) }
+        steps = analyzedInstructionDto.steps?.map { convertStepDtoToStep(it) }
     )
 }

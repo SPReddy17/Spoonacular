@@ -8,29 +8,29 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ExtendedIngredientDto(
     @SerialName("aisle")
-    val aisle: String,
+    val aisle: String?,
     @SerialName("amount")
-    val amount: Double,
+    val amount: Double?,
     @SerialName("consistency")
-    val consistency: String,
+    val consistency: String?,
     @SerialName("id")
-    val id: Int,
+    val id: Int?,
     @SerialName("image")
-    val image: String,
+    val image: String?,
     @SerialName("measures")
-    val measures: MeasuresDto,
+    val measures: MeasuresDto?,
     @SerialName("meta")
-    val meta: List<String>,
+    val meta: List<String>?,
     @SerialName("name")
-    val name: String,
+    val name: String?,
     @SerialName("nameClean")
-    val nameClean: String,
+    val nameClean: String?,
     @SerialName("original")
-    val original: String,
+    val original: String?,
     @SerialName("originalName")
-    val originalName: String,
+    val originalName: String?,
     @SerialName("unit")
-    val unit: String
+    val unit: String?
 )
 
 fun convertExtendedIngredientDtoToExtendedIngredient(extendedIngredientDto: ExtendedIngredientDto): ExtendedIngredient{
@@ -40,7 +40,7 @@ fun convertExtendedIngredientDtoToExtendedIngredient(extendedIngredientDto: Exte
         consistency =  extendedIngredientDto.consistency,
         id = extendedIngredientDto.id,
         image = extendedIngredientDto.image,
-        measures =  extendedIngredientDto.measures.toMeasures(),
+        measures =  extendedIngredientDto.measures?.toMeasures(),
         meta = extendedIngredientDto.meta,
         name = extendedIngredientDto.name,
         nameClean =  extendedIngredientDto.nameClean,

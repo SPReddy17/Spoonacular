@@ -3,7 +3,7 @@ package com.example.recipe_detail_domain
 data class RecipeDetail(
     val aggregateLikes: Int?,
     val analyzedInstructions: List<AnalyzedInstruction>?,
-    val cheap: Boolean,
+    val cheap: Boolean?,
     val cookingMinutes: Int?,
     val creditsText: String?,
     val cuisines: List<String>?,
@@ -38,5 +38,5 @@ data class RecipeDetail(
     val veryHealthy: Boolean?,
     val veryPopular: Boolean?,
     val weightWatcherSmartPoints: Int?,
-    val winePairing: WinePairing? = null
+    val winePairing: WinePairing?
 )

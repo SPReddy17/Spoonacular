@@ -7,21 +7,21 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class StepDto(
     @SerialName("equipment")
-    val equipment: List<EquipmentDto>,
+    val equipment: List<EquipmentDto>?,
     @SerialName("ingredients")
-    val ingredients: List<IngredientDto>,
+    val ingredients: List<IngredientDto>?,
     @SerialName("number")
-    val number: Int,
+    val number: Int?,
     @SerialName("step")
-    val step: String,
+    val step: String?,
     @SerialName("length")
     val length: LengthDto?=null,
 )
 
 fun convertStepDtoToStep(stepDto: StepDto): Step {
     return Step(
-        equipment = stepDto.equipment.map { convertEquipmentDtoToEquipment(it) },
-        ingredients = stepDto.ingredients.map { convertIngredientDtoToIngredient(it) },
+        equipment = stepDto.equipment?.map { convertEquipmentDtoToEquipment(it) },
+        ingredients = stepDto.ingredients?.map { convertIngredientDtoToIngredient(it) },
         number = stepDto.number,
         step = stepDto.step,
         length = stepDto.length?.toLength()
