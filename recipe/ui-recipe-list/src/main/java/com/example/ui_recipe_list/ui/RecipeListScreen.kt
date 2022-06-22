@@ -21,18 +21,19 @@ import com.example.ui_recipe_list.components.RecipeListToolbar
 @Composable
 fun RecipeListScreen(
     state: RecipeListState,
+    events: (RecipeListEvents) -> Unit,
     imageLoader: ImageLoader,
     navigateToDetailScreen: (Int) -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Column() {
-            val recipeName = remember { mutableStateOf("") }
             RecipeListToolbar(
-                recipeName = recipeName.value,
-                onRecipeNameChanged ={name ->
-                    recipeName.value = name
+                recipeName = state.recipeName ?: "",
+                onRecipeNameChanged = { name ->
+                    events(RecipeListEvents.UpdateRecipeName(name))
                 },
-                onExecuteSearch = { /*TODO*/
+                onExecuteSearch = {
+                    events(RecipeListEvents.FilteredRecipe)
                 },
                 onShowFilterDialog = {
 

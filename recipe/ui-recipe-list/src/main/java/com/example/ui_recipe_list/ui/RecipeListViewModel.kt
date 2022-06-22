@@ -31,16 +31,31 @@ constructor(
         onTriggerEvent(RecipeListEvents.GetRecipeList)
     }
 
-    private fun onTriggerEvent(event: RecipeListEvents){
-        when(event){
-            is RecipeListEvents.GetRecipeList ->{
-                getRecipeList()
+     fun onTriggerEvent(event: RecipeListEvents) {
+        when (event) {
+            is RecipeListEvents.GetRecipeList -> {
+                // default UI will be showing burger list
+                getRecipeList("burger")
+            }
+            is RecipeListEvents.FilteredRecipe -> {
+                filterRecipe()
+            }
+            is RecipeListEvents.UpdateRecipeName -> {
+                updateRecipeName(event.recipeName)
             }
         }
     }
 
-    private fun getRecipeList() {
-        recipeList.execute("burger").onEach { dataState ->
+    private fun updateRecipeName(recipeName: String) {
+        state.value = state.value.copy(recipeName = recipeName)
+    }
+
+    private fun filterRecipe() {
+        getRecipeList(state.value.recipeName?:"")
+    }
+
+    private fun getRecipeList(query: String) {
+        recipeList.execute(query).onEach { dataState ->
             when (dataState) {
                 is DataState.Response -> {
                     when (dataState.uiComponent) {

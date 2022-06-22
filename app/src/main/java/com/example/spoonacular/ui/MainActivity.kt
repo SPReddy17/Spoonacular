@@ -64,7 +64,8 @@ fun NavGraphBuilder.addRecipeList(
                 navController.navigate(
                     "${Screen.RecipeDetail.route}/$recipeId"
                 )
-            }
+            },
+            events = viewModel::onTriggerEvent
         )
     }
 }

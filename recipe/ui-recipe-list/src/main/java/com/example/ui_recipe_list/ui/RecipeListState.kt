@@ -5,5 +5,7 @@ import com.example.recipe_list_domain.RecipeList
 
 data class RecipeListState(
     val progressBarState: ProgressBarState = ProgressBarState.Idle,
-    val recipeList: RecipeList? = null
+    val recipeList: RecipeList? = null,
+    val filteredRecipe: RecipeList? = null,
+    val recipeName : String? = null,
 )

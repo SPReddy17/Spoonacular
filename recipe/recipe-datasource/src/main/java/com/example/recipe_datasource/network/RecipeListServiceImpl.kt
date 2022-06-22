@@ -12,8 +12,8 @@ import io.ktor.client.request.*
 class RecipeListServiceImpl(
     private val httpClient: HttpClient
 ) : RecipeListService {
-   // private val myApiKey = "2e11fd22ebe5489a99e0c4b5565d079c"
-    private val myApiKey = "8b0895d4e7df4ea6a278858f5878839f"
+    //private val myApiKey = "2e11fd22ebe5489a99e0c4b5565d079c"
+   private val myApiKey = "8b0895d4e7df4ea6a278858f5878839f"
 
     // to get list of recipes
     override suspend fun getRecipeList(query: String): RecipeList {
@@ -21,20 +21,19 @@ class RecipeListServiceImpl(
             url(EndPoints.RECIPE_SEARCH)
             parameter("apiKey", myApiKey)
             parameter("query", query)
-            parameter("number", 25) // returns 25 recipes
+            parameter("number", 99) // returns 25 recipes
         }.toRecipeList()
     }
 
     // to get the specific recipe information
     override suspend fun getRecipeDetail(id: Int): RecipeDetail {
-        var recipeId = id
 
-        var url = EndPoints.RECIPE_DETAIL_SEARCH+"/"+recipeId+"/information"
+        val url = EndPoints.RECIPE_DETAIL_SEARCH + "/" + id + "/information"
 
         return httpClient.get<RecipeDetailDto> {
             url(url)
             parameter("apiKey", myApiKey)
-            parameter("id",recipeId)
+            parameter("id", id)
         }.toRecipeDetail()
     }
 }

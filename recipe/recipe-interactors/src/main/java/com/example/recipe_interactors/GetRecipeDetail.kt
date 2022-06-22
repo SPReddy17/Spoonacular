@@ -15,7 +15,7 @@ class GetRecipeDetail(
     fun execute(id: Int, ): Flow<DataState<RecipeDetail>> = flow {
         try {
             emit(DataState.Loading(progressBarState = ProgressBarState.Loading))
-            delay(2000)
+            delay(1000)
             val recipeDetail: RecipeDetail = try {
                 service.getRecipeDetail(id)
             } catch (e: Exception) {
