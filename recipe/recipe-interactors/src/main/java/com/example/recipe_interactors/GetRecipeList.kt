@@ -16,26 +16,26 @@ class GetRecipeList(
         try {
             emit(DataState.Loading(progressBarState = ProgressBarState.Loading))
             delay(1000)
-            val recipeList: RecipeList = try {
-                service.getRecipeList(query)
+             try {
+                val list   = service.getRecipeList(query)
+                emit(DataState.Data(list))
             } catch (e: Exception) {
-                emit(
-                    DataState.Response<RecipeList>(
+                emit(DataState.Response<RecipeList>(
                         uiComponent = UIComponent.Dialog(
                             title = "Network Data Error",
                             description = e.message ?: "Uknown Error"
                         )
                     )
                 )
-                RecipeList(
-                    null,
-                    null,
-                    null,
-                    null
-                )
+//                RecipeList(
+//                    null,
+//                    null,
+//                    null,
+//                    null
+//                )
             }
             // do caching in the future...
-            emit(DataState.Data(recipeList))
+           // emit(DataState.Data(recipeList))
         } catch (e: Exception) {
             emit(
                 DataState.Response<RecipeList>(

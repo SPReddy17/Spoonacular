@@ -16,8 +16,9 @@ class GetRecipeDetail(
         try {
             emit(DataState.Loading(progressBarState = ProgressBarState.Loading))
             delay(1000)
-            val recipeDetail: RecipeDetail = try {
-                service.getRecipeDetail(id)
+          try {
+                val recipeDetail = service.getRecipeDetail(id)
+                emit(DataState.Data(recipeDetail))
             } catch (e: Exception) {
                 emit(
                     DataState.Response<RecipeDetail>(
@@ -27,37 +28,9 @@ class GetRecipeDetail(
                         )
                     )
                 )
-                RecipeDetail(
-                    null,
-                    null,
-                    false,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,null,
-                    null,
-                    null,null,null,null,null,null,null,null,null,null,null,null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null
-                )
             }
             // do caching in the future...
-            emit(DataState.Data(recipeDetail))
+
         } catch (e: Exception) {
             emit(
                 DataState.Response<RecipeDetail>(
