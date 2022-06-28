@@ -12,8 +12,7 @@ import io.ktor.client.request.*
 class RecipeListServiceImpl(
     private val httpClient: HttpClient
 ) : RecipeListService {
-    //private val myApiKey = "2e11fd22ebe5489a99e0c4b5565d079c"
-   private val myApiKey = "8b0895d4e7df4ea6a278858f5878839f"
+
 
     // to get list of recipes
     override suspend fun getRecipeList(query: String): RecipeList {
