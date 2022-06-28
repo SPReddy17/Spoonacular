@@ -9,4 +9,5 @@ dependencies {
     "implementation"(Coil.coil)
     "implementation"(Hilt.android)
     "kapt"(Hilt.compiler)
+    "implementation" ("org.jsoup:jsoup:1.11.1")
 }

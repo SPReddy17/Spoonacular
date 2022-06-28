@@ -21,6 +21,7 @@ import coil.compose.rememberImagePainter
 import com.example.core.ProgressBarState
 import com.example.recipe_detail_domain.RecipeDetail
 import com.example.ui_recipe_detail.R
+import org.jsoup.Jsoup
 
 @Composable
 fun RecipeDetailScreen(
@@ -28,7 +29,7 @@ fun RecipeDetailScreen(
     imageLoader: ImageLoader,
     events: (RecipeDetailEvents) -> Unit,
 ) {
-    state.recipeDetail?.let{ recipeDetail ->
+    state.recipeDetail?.let { recipeDetail ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -67,37 +68,15 @@ fun RecipeDetailScreen(
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
                                     .padding(end = 8.dp),
-                                text = recipeDetail.title?:"",
+                                text = recipeDetail.title ?: "",
                                 style = MaterialTheme.typography.h1,
                             )
-//                            val iconPainter = rememberImagePainter(
-//                                hero.icon,
-//                                imageLoader = imageLoader,
-//                                builder = {
-//                                    placeholder(if (isSystemInDarkTheme()) R.drawable.black_background else R.drawable.white_background)
-//                                }
-//                            )
-//                            Image(
-//                                modifier = Modifier
-//                                    .height(30.dp)
-//                                    .width(30.dp)
-//                                    .align(Alignment.CenterVertically),
-//                                painter = iconPainter,
-//                                contentDescription = hero.localizedName,
-//                                contentScale = ContentScale.Crop,
-//                            )
                         }
                         Text(
                             modifier = Modifier
                                 .padding(bottom = 4.dp),
-                            text =recipeDetail.title?:"",
+                            text = "Summary : ${html2text(recipeDetail.summary)}",
                             style = MaterialTheme.typography.subtitle1,
-                        )
-                        Text(
-                            modifier = Modifier
-                                .padding(bottom = 12.dp),
-                            text = recipeDetail.title?:"",
-                            style = MaterialTheme.typography.caption,
                         )
                         RecipeDetailStats(
                             recipeDetail = recipeDetail,
@@ -117,52 +96,51 @@ fun RecipeDetailScreen(
             modifier = Modifier
         )
     }
-
 }
 
+// to convert html to string..
+fun html2text(html: String?): String {
+    return Jsoup.parse(html).text()
+}
 
 @Composable
 fun RecipeDetailStats(
     recipeDetail: RecipeDetail,
     padding: Dp,
-){
+) {
     Surface(
         modifier = Modifier
-            .fillMaxWidth()
-        ,
+            .fillMaxWidth(),
         elevation = 8.dp,
         shape = MaterialTheme.shapes.medium
-    ){
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(padding)
-            ,
+                .padding(padding),
         ) {
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 8.dp)
-                ,
+                    .padding(bottom = 8.dp),
                 text = "Base Stats",
                 style = MaterialTheme.typography.h4,
             )
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-            ){
+            ) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth(0.5f)
                         .padding(end = 20.dp)
-                ){ // Str, Agi, Int, Health
-                    Row( // STR
+                ) {
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(bottom = 8.dp)
-                        ,
+                            .padding(bottom = 8.dp),
                         horizontalArrangement = Arrangement.SpaceBetween
-                    ){
+                    ) {
                         Text(
                             text = "${stringResource(R.string.vegan)}:",
                             style = MaterialTheme.typography.body2,
@@ -174,18 +152,17 @@ fun RecipeDetailStats(
                             )
                         }
                     }
-                    Row( // AGI
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(bottom = 8.dp)
-                        ,
+                            .padding(bottom = 8.dp),
                         horizontalArrangement = Arrangement.SpaceBetween
-                    ){
+                    ) {
                         Text(
                             text = "${stringResource(R.string.vegetarian)}:",
                             style = MaterialTheme.typography.body2,
                         )
-                        Row{
+                        Row {
                             Text(
                                 text = "${recipeDetail.vegetarian}",
                                 style = MaterialTheme.typography.body2,
@@ -193,31 +170,29 @@ fun RecipeDetailStats(
 
                         }
                     }
-                    Row( // INT
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(bottom = 8.dp)
-                        ,
+                            .padding(bottom = 8.dp),
                         horizontalArrangement = Arrangement.SpaceBetween
-                    ){
+                    ) {
                         Text(
                             text = "${stringResource(R.string.gluten_free)}:",
                             style = MaterialTheme.typography.body2,
                         )
-                        Row{
+                        Row {
                             Text(
                                 text = "${recipeDetail.glutenFree}",
                                 style = MaterialTheme.typography.body2,
                             )
                         }
                     }
-                    Row( // HP
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(bottom = 8.dp)
-                        ,
+                            .padding(bottom = 8.dp),
                         horizontalArrangement = Arrangement.SpaceBetween
-                    ){
+                    ) {
                         Text(
                             text = "${stringResource(R.string.health_score)}:",
                             style = MaterialTheme.typography.body2,
@@ -231,63 +206,57 @@ fun RecipeDetailStats(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                ){ // Atk Range, proj speed, move speed, atk dmg
-                    Row( // Atk Range
+                ) {
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween
-                    ){
+                    ) {
                         Text(
                             modifier = Modifier
-                                .padding(bottom = 8.dp)
-                            ,
+                                .padding(bottom = 8.dp),
                             text = "${stringResource(R.string.dairy_free)}:",
                             style = MaterialTheme.typography.body2,
                         )
                         Text(
                             modifier = Modifier
-                                .padding(bottom = 8.dp)
-                            ,
+                                .padding(bottom = 8.dp),
                             text = "${recipeDetail.dairyFree}",
                             style = MaterialTheme.typography.body2,
                         )
                     }
-                    Row( // projectile speed
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween
-                    ){
+                    ) {
                         Text(
                             modifier = Modifier
-                                .padding(bottom = 8.dp)
-                            ,
+                                .padding(bottom = 8.dp),
                             text = "${stringResource(R.string.servings)}:",
                             style = MaterialTheme.typography.body2,
                         )
                         Text(
                             modifier = Modifier
-                                .padding(bottom = 8.dp)
-                            ,
+                                .padding(bottom = 8.dp),
                             text = "${recipeDetail.servings}",
                             style = MaterialTheme.typography.body2,
                         )
                     }
-                    Row( // Move speed
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween
-                    ){
+                    ) {
                         Text(
                             modifier = Modifier
-                                .padding(bottom = 8.dp)
-                            ,
+                                .padding(bottom = 8.dp),
                             text = "${stringResource(R.string.name)}:",
                             style = MaterialTheme.typography.body2,
                         )
                         Text(
                             modifier = Modifier
-                                .padding(bottom = 8.dp)
-                            ,
+                                .padding(bottom = 8.dp),
                             text = "${recipeDetail.title}",
                             style = MaterialTheme.typography.body2,
                         )
